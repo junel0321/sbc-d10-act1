@@ -1,0 +1,13 @@
+SELECT 
+    r.id AS rental_id,
+    CONCAT(c.fName, ' ', COALESCE(c.mName, ''), ' ', c.lName) AS full_name,
+    m.title AS borrowed_title,
+    MONTH(r.requestedDate) AS month,
+    YEAR(r.requestedDate) AS year,
+    r.requestedQty AS quantity
+FROM 
+    tbl_rents_info r
+JOIN 
+    tbl_customer_info c ON r.tbl_customer_info_id = c.id
+JOIN 
+    tbl_movie_info m ON r.tbl_movie_info_id = m.id;

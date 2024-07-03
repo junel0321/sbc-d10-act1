@@ -1,0 +1,10 @@
+SELECT 
+    CONCAT(ci.fName, ' ', COALESCE(ci.mName, ''), ' ', ci.lName) AS full_name,
+    mi.title AS borrowed_title,
+    ri.requestedQty AS quantity
+FROM 
+    tbl_rents_info ri
+JOIN 
+    tbl_customer_info ci ON ri.tbl_customer_info_id = ci.id
+JOIN 
+    tbl_movie_info mi ON ri.tbl_movie_info_id = mi.id;
